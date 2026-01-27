@@ -134,11 +134,6 @@ jobs:
       # create a zip file using the runners shell
       - name: Package Files Prod
         run: zip -r "output/${{ env.VEHICLE }} ${{ steps.vars.outputs.HELIOSBUILDTYPE }}_V${{ steps.bump_tag.outputs.tag }}.helios16" ./Profile16.json ./LICENSE ./*.md ./${{ env.VEHICLE }}/Helios${{ steps.vars.outputs.HELIOSDIRECTORYNAME }}/ -x ".git/*" ".github/*" "./${{ env.VEHICLE }}/Helios${{ steps.vars.outputs.HELIOSDIRECTORYNAME }}/Profiles/*.bak" "./${{ env.VEHICLE }}/Helios${{ steps.vars.outputs.HELIOSDIRECTORYNAME }}/Profiles/*.hply"
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.VEHICLECOMMONNAME }} helios16 ${{ steps.vars.outputs.HELIOSBUILDTYPE }} package
-          path: output/${{ env.VEHICLE }} ${{ steps.vars.outputs.HELIOSBUILDTYPE }}_V${{ steps.bump_tag.outputs.tag }}.helios16
-          retention-days: 2
       - name: Read About file
         id: getAbout
         run: |
